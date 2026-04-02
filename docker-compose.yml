@@ -1,0 +1,21 @@
+services:
+  portfolio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ${APP_ALIAS}
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      HOST: 0.0.0.0
+      PORT: ${APP_PORT}
+    expose:
+      - ${APP_PORT}
+    networks:
+      app_network:
+        aliases:
+          - ${APP_ALIAS}
+
+networks:
+  app_network:
+    name: ${APP_NETWORK}
+    driver: bridge
